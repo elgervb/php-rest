@@ -1,0 +1,34 @@
+{
+  "name": "gulp-rest",
+  "version": "0.0.1",
+  "description": "PHP rest",
+  "main": "",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "gulp test",
+    "watch": "gulp test:watch",
+    "start": "php -S localhost:4000 -t src/ -c php.ini"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elgervb/php-rest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elgervb/php-rest/issues"
+  },
+  "homepage": "https://github.com/elgervb/php-rest",
+  "devDependencies": {
+    "browser-sync": "^2.12.3",
+    "gulp": "^3.9.0",
+    "gulp-connect-php": "0.0.8",
+    "gulp-if": "^2.0.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-phpunit": "^0.16.0",
+    "lodash": "^4.11.1",
+    "yargs": "^4.6.0"
+  }
+}

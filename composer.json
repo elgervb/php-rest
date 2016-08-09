@@ -1,0 +1,36 @@
+{
+  "name" : "elgervb/php-rest",
+  "description" : "php-http",
+  "version" : "0.0.1",
+  "require" : {
+    "gabordemooij/redbean" : "=v4.3.2",
+    "elgervb/php-router" : "=0.0.2",
+    "elgervb/php-view" : "dev-master",
+    "elgervb/php-http" : "dev-master",
+    "elgervb/php-handler" : "dev-master"
+  },
+  "require-dev" : {
+    "phpunit/phpunit" : "5.4.8"
+  },
+  "license" : [ "MIT" ],
+  "keywords" : [ "php", "view" ],
+  "autoload" : {
+    "psr-0" : {
+      "http" : "src"
+    }
+  },
+  "type" : "library",
+  "support" : {
+    "wiki" : "https://github.com/elgervb/php-http/wiki",
+    "source" : "https://github.com/elgervb/php-http",
+    "issues" : "https://github.com/elgervb/php-http/issues",
+    "email" : "elgervb@gmail.com"
+  },
+  "authors" : [ {
+    "name" : "Elger van Boxtel",
+    "email" : "elgervb@gmail.com",
+    "homepage" : "http://elgervanboxtel.nl",
+    "role" : "developer"
+  } ],
+  "homepage" : "https://github.com/elgervb/php-http"
+}
