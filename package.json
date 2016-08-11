@@ -6,6 +6,9 @@
   "directories": {
     "test": "tests"
   },
+  "settings": {
+      
+  },
   "scripts": {
     "test": "gulp test",
     "watch": "gulp test:watch",

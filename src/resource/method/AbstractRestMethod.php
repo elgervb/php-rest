@@ -1,0 +1,22 @@
+<?php
+
+namespace resource\method;
+
+abstract class AbstractRestMethod implements IRestMethod {
+	
+	public abstract function request();
+	
+	private $attributes = [];
+
+	public function attr($key, $value = null) {
+		// getter
+		if ($value === null) {
+			return isset($this->attributes['$key']) ? $this->attributes['$key'] : [];
+		}
+	
+		// setter
+		$this->attributes[$key] = $value;
+		
+		return $this; // for chaining
+	}
+}
