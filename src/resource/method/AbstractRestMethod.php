@@ -4,8 +4,6 @@ namespace resource\method;
 
 abstract class AbstractRestMethod implements IRestMethod {
 	
-	public abstract function request();
-	
 	private $attributes = [];
 
 	public function attr($key, $value = null) {

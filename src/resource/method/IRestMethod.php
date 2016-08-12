@@ -18,7 +18,9 @@ interface IRestMethod {
 	/**
 	 * Makes the request
 	 * 
+	 * @param array $params optional parameters
+	 * 
 	 * @return handler/http/HttpStatus
 	 */
-	public function request();
+	public function request(array $params = null);
 }

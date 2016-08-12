@@ -12,7 +12,7 @@ class Options extends AbstractRestMethod {
 	 *
 	 * @return HttpStatus 200
 	 */
-	public function request() {
+	public function request(array $params = null) {
 		return new \handler\http\HttpStatus(200);
 	}
 }
