@@ -22,7 +22,7 @@ class Get extends AbstractRestMethod {
 		
 		if ($resources) {
 			/* @var $resource RedBeanPHP\OODBBean */
-			foreach ($resource as $resources) {
+			foreach ($resources as $resource) {
 				$result[] = $resource->export();
 			}
 		} else {
