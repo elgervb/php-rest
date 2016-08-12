@@ -1,5 +1,5 @@
 <?php
-namespace resource;
+namespace rest\resource;
 
 interface IRestResource {
 	public function get();

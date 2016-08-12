@@ -1,13 +1,12 @@
 <?php
-namespace resource\method;
+namespace rest\method;
 
 use RedBeanPHP\R;
 
-use resource\method;
 use handler\http\HttpStatus;
 
 /**
- * @covers resource\method\Get
+ * @covers \rest\method\Get
  */
 class GetTest extends \PHPUnit_Framework_TestCase {
 	
@@ -32,9 +31,9 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Request multiple resources
 	 * 
-	 * @covers \resource\method\Get::__construct
-	 * @covers \resource\method\Get::request
-	 * @covers \resource\method\Get::findAll
+	 * @covers \rest\method\Get::__construct
+	 * @covers \rest\method\Get::request
+	 * @covers \rest\method\Get::findAll
 	 */
 	public function testRequestAll() {
 		$method = new Get('TEST');
@@ -58,9 +57,9 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Request a single resource
 	 * 
-	 * @covers \resource\method\Get::__construct
-	 * @covers \resource\method\Get::request
-	 * @covers \resource\method\Get::findOne
+	 * @covers \rest\method\Get::__construct
+	 * @covers \rest\method\Get::request
+	 * @covers \rest\method\Get::findOne
 	 */
 	public function testRequestOne() {
 		$method = new Get('TEST');
@@ -81,9 +80,9 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Request a single resource which does not exist
 	 *
-	 * @covers \resource\method\Get::__construct
-	 * @covers \resource\method\Get::request
-	 * @covers \resource\method\Get::findOne
+	 * @covers \rest\method\Get::__construct
+	 * @covers \rest\method\Get::request
+	 * @covers \rest\method\Get::findOne
 	 */
 	public function testRequestOneFail() {
 		$method = new Get('TEST');

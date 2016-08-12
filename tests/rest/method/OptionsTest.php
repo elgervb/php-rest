@@ -1,11 +1,11 @@
 <?php
-namespace resource\method;
+namespace rest\method;
 
-use resource\method;
+use rest\method;
 use handler\http\HttpStatus;
 
 /**
- * @covers resource\method\Options
+ * @covers \rest\method\Options
  */
 class OptionsTest extends \PHPUnit_Framework_TestCase {
 	
@@ -14,8 +14,8 @@ class OptionsTest extends \PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers resource\method\Options::__construct
-	 * @covers resource\method\Options::request
+	 * @covers \rest\method\Options::__construct
+	 * @covers \rest\method\Options::request
 	 */
 	public function testRequest() {
 		$options = new Options();

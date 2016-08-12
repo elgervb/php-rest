@@ -1,4 +1,4 @@
 <?php
-namespace resource;
+namespace rest\resource;
 
 class RestException extends \Exception {}

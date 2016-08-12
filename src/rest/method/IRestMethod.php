@@ -1,5 +1,5 @@
 <?php
-namespace resource\method;
+namespace rest\method;
 
 /**
  * Interface for REST method

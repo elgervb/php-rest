@@ -1,5 +1,5 @@
 <?php
-namespace resource;
+namespace rest\resource;
 
 class Resource implements IRestResource {
 	
