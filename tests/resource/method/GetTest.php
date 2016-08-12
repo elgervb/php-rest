@@ -6,6 +6,9 @@ use RedBeanPHP\R;
 use resource\method;
 use handler\http\HttpStatus;
 
+/**
+ * @covers resource\method\Get
+ */
 class GetTest extends \PHPUnit_Framework_TestCase {
 	
 	public static function setUpBeforeClass() {
@@ -28,8 +31,12 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 	
 	/**
 	 * Request multiple resources
+	 * 
+	 * @covers resource\method\Get::__construct
+	 * @covers resource\method\Get::request
+	 * @covers resource\method\Get::findAll
 	 */
-	public function testRequestList() {
+	public function testRequestAll() {
 		$method = new Get('TEST');
 		
 		$result = $method->request();
@@ -44,6 +51,10 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 	
 	/**
 	 * Request a single resource
+	 * 
+	 * @covers resource\method\Get::__construct
+	 * @covers resource\method\Get::request
+	 * @covers resource\method\Get::findOne
 	 */
 	public function testRequestOne() {
 		$method = new Get('TEST');

@@ -4,12 +4,19 @@ namespace resource\method;
 use resource\method;
 use handler\http\HttpStatus;
 
+/**
+ * @covers resource\method\Options
+ */
 class OptionsTest extends \PHPUnit_Framework_TestCase {
 	
 	public function setUp() {
 		
 	}
 	
+	/**
+	 * @covers resource\method\Options::__construct
+	 * @covers resource\method\Options::request
+	 */
 	public function testRequest() {
 		$options = new Options();
 		$result = $options->request();
