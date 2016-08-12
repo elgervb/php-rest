@@ -24,6 +24,13 @@ class Get extends AbstractRestMethod {
 		return $this->findAll();
 	}
 	
+	/**
+	 * Find exactly one resource
+	 * 
+	 * @param array $params
+	 * 
+	 * @return \handler\http\HttpStatus
+	 */
 	private function findOne(array $params) {
 		$resource = \RedBeanPHP\R::findOne($this->beanName, 'id = ?', [$params['id']]);
 		if ($resource) {

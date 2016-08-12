@@ -32,9 +32,9 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Request multiple resources
 	 * 
-	 * @covers resource\method\Get::__construct
-	 * @covers resource\method\Get::request
-	 * @covers resource\method\Get::findAll
+	 * @covers \resource\method\Get::__construct
+	 * @covers \resource\method\Get::request
+	 * @covers \resource\method\Get::findAll
 	 */
 	public function testRequestAll() {
 		$method = new Get('TEST');
@@ -47,14 +47,20 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 		/* @var $content \handler\json\Json */
 		$content = $result->getContent();
 		$this->assertTrue($content instanceof \handler\json\Json, 'Content is a ' . get_class($content));
+	
+		$object = $content->getObject();
+		$this->assertEquals(3, count($object));
+		$this->assertEquals('one', $object[0]['name']);
+		$this->assertEquals('two', $object[1]['name']);
+		$this->assertEquals('three', $object[2]['name']);
 	}
 	
 	/**
 	 * Request a single resource
 	 * 
-	 * @covers resource\method\Get::__construct
-	 * @covers resource\method\Get::request
-	 * @covers resource\method\Get::findOne
+	 * @covers \resource\method\Get::__construct
+	 * @covers \resource\method\Get::request
+	 * @covers \resource\method\Get::findOne
 	 */
 	public function testRequestOne() {
 		$method = new Get('TEST');
@@ -67,5 +73,32 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 		/* @var $content \handler\json\Json */
 		$content = $result->getContent();
 		$this->assertTrue($content instanceof \handler\json\Json, 'Content is a ' . get_class($content));
+
+		$object = $content->getObject();
+		$this->assertEquals('one', $object->name);
+	}
+	
+	/**
+	 * Request a single resource which does not exist
+	 *
+	 * @covers \resource\method\Get::__construct
+	 * @covers \resource\method\Get::request
+	 * @covers \resource\method\Get::findOne
+	 */
+	public function testRequestOneFail() {
+		$method = new Get('TEST');
+	
+		$result = $method->request(['id'=>9]);
+	
+		$this->assertTrue($result instanceof \handler\http\HttpStatus);
+		$this->assertEquals(\handler\http\HttpStatus::STATUS_404_NOT_FOUND, $result->getHttpCode());
+	
+		/* @var $content \handler\json\Json */
+		$content = $result->getContent();
+		$this->assertTrue($content instanceof \handler\json\Json, 'Content is a ' . get_class($content));
+		
+		$object = $content->getObject();
+		
+		$this->assertEquals('No results found', $object['message']);
 	}
 }
