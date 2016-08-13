@@ -2,7 +2,6 @@
 namespace rest\method;
 
 use RedBeanPHP\R;
-
 use handler\http\HttpStatus;
 
 /**
@@ -11,10 +10,11 @@ use handler\http\HttpStatus;
 class GetTest extends \PHPUnit_Framework_TestCase {
 	
 	public static function setUpBeforeClass() {
-		R::setup('sqlite:'.__DIR__.'/GetTest.sqlite');
+		R::addDatabase(__CLASS__, 'sqlite:'.__DIR__.'/GetTest.sqlite');
 	}
 	
 	public function setUp() {
+		R::selectDatabase(__CLASS__);
 		R::nuke();
 		$labels = R::dispenseLabels('TEST', ['one', 'two', 'three']);
 		R::storeAll($labels);

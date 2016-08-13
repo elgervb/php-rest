@@ -2,6 +2,6 @@
 namespace rest\resource;
 
 interface IRestResource {
-	public function get();
-	public function options();
+	public function get(array $params = null);
+	public function options(array $params = null);
 }
