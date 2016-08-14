@@ -13,7 +13,7 @@ $handlers->add(new handler\json\JsonHandler());
 
 $router = new router\Router();
 $resource = new \rest\resource\RestResource('TEST');
-$resource->whiteList('GET', 'OPTIONS');
+$resource->whiteList('GET', 'OPTIONS', 'POST');
 $routes = new \rest\route\ResourceRoute($resource, $router);
 
 $result = $router->match($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

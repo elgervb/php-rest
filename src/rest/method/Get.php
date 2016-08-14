@@ -3,6 +3,8 @@ namespace rest\method;
 
 class Get extends AbstractRestMethod {
 	
+	private $beanName;
+	
 	public function __construct($beanName) {
 		$this->beanName = $beanName;
 	}

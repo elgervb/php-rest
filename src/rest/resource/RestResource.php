@@ -52,6 +52,18 @@ class RestResource implements IRestResource {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 * @see \rest\resource\IRestResource::post()
+	 * @see \rest\method\Post::request()
+	 */
+	public function post(array $params = null) {
+		$this->checkWhiteListed('POST');
+		
+		$post = new \rest\method\Post($this->beanName);
+		return $post->request($params);
+	}
+	
+	/**
 	 * Add http methods to the whitelist
 	 * 
 	 * @param string ...$httpMethods
