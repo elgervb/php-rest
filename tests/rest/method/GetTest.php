@@ -35,7 +35,7 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 	 * @covers \rest\method\Get::request
 	 * @covers \rest\method\Get::findAll
 	 */
-	public function testRequestAll() {
+	public function test200Multiple() {
 		$method = new Get('TEST');
 		
 		$result = $method->request();
@@ -61,7 +61,7 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 	 * @covers \rest\method\Get::request
 	 * @covers \rest\method\Get::findOne
 	 */
-	public function testRequestOne() {
+	public function test200Single() {
 		$method = new Get('TEST');
 		
 		$result = $method->request(['id'=>1]);
@@ -84,7 +84,7 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 	 * @covers \rest\method\Get::request
 	 * @covers \rest\method\Get::findOne
 	 */
-	public function testRequestOneFail() {
+	public function test404Single() {
 		$method = new Get('TEST');
 	
 		$result = $method->request(['id'=>9]);
@@ -98,6 +98,30 @@ class GetTest extends \PHPUnit_Framework_TestCase {
 		
 		$object = $content->getObject();
 		
+		$this->assertEquals('No results found', $object['message']);
+	}
+	
+	/**
+	 * Request a single resource which does not exist
+	 *
+	 * @covers \rest\method\Get::__construct
+	 * @covers \rest\method\Get::request
+	 * @covers \rest\method\Get::findOne
+	 */
+	public function test404Multiple() {
+		$method = new Get('NON_EXISTING_BEAN');
+	
+		$result = $method->request();
+	
+		$this->assertTrue($result instanceof \handler\http\HttpStatus);
+		$this->assertEquals(\handler\http\HttpStatus::STATUS_404_NOT_FOUND, $result->getHttpCode());
+	
+		/* @var $content \handler\json\Json */
+		$content = $result->getContent();
+		$this->assertTrue($content instanceof \handler\json\Json, 'Content is a ' . get_class($content));
+	
+		$object = $content->getObject();
+	
 		$this->assertEquals('No results found', $object['message']);
 	}
 }
