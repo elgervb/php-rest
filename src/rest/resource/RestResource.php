@@ -13,7 +13,6 @@ class RestResource implements IRestResource {
 	}
 	
 	/**
-	 * 
 	 * {@inheritDoc}
 	 * @see \rest\resource\IRestResource::get()
 	 * 
@@ -45,22 +44,41 @@ class RestResource implements IRestResource {
 		throw new RestException($httpMethod . ' not whitelisted.');
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 * @see \rest\resource\IRestResource::options()
+	 *
+	 * @use \rest\method\Options::request
+	 */
 	public function options(array $params = null) {
 		$this->checkWhiteListed('OPTIONS');
 		
-		// TODO
+		$options = new \rest\method\Options();
+		return $options->request($params);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 * @see \rest\resource\IRestResource::post()
-	 * @see \rest\method\Post::request()
+	 * @use \rest\method\Post::request()
 	 */
 	public function post(array $params = null) {
 		$this->checkWhiteListed('POST');
 		
 		$post = new \rest\method\Post($this->beanName);
 		return $post->request($params);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @see \rest\resource\IRestResource::put()
+	 * @use \rest\method\Put::request()
+	 */
+	public function put(array $params = null) {
+		$this->checkWhiteListed('POST');
+	
+		$put = new \rest\method\Put($this->beanName);
+		return $put->request($params);
 	}
 	
 	/**
