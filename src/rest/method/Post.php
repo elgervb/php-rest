@@ -50,7 +50,5 @@ class Post extends AbstractRestMethod {
 		} catch (RedException $ex) {
 			return new HttpStatus(HttpStatus::STATUS_409_CONFLICT_ON_DOUBLE_ENTRY);
 		}
-		
-		return new HttpStatus(HttpStatus::STATUS_409_CONFLICT_ON_DOUBLE_ENTRY);
 	}
 }

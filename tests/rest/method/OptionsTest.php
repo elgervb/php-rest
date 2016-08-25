@@ -17,7 +17,7 @@ class OptionsTest extends \PHPUnit_Framework_TestCase {
 	 * @covers \rest\method\Options::__construct
 	 * @covers \rest\method\Options::request
 	 */
-	public function testRequest() {
+	public function test200() {
 		$options = new Options();
 		$result = $options->request();
 		

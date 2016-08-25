@@ -23,10 +23,10 @@ class PostTest extends \PHPUnit_Framework_TestCase {
 	 * @covers \rest\method\Post::__construct
 	 * @covers \rest\method\Post::request
 	 */
-	public function testRequest() {
+	public function test201() {
 		$_POST['name'] = 'name1';
 		
-		$post = new Post('TEST');
+		$post = new Post('test');
 		$result = $post->request();
 		
 		$this->assertTrue($result instanceof \handler\http\HttpStatus, '$result instanceof ' . get_class($result));
@@ -37,11 +37,11 @@ class PostTest extends \PHPUnit_Framework_TestCase {
 	 * @covers \rest\method\Post::__construct
 	 * @covers \rest\method\Post::request
 	 */
-	public function testRequestWithID() {
+	public function test422() {
 		$_POST['id'] = 1;
 		$_POST['name'] = 'name1';
 		
-		$post = new Post('TEST');
+		$post = new Post('test');
 		$result = $post->request();
 		
 		$this->assertTrue($result instanceof \handler\http\HttpStatus, '$result instanceof ' . get_class($result));
@@ -52,10 +52,10 @@ class PostTest extends \PHPUnit_Framework_TestCase {
 	 * @covers \rest\method\Post::__construct
 	 * @covers \rest\method\Post::request
 	 */
-	public function testRequestWithoutData() {
+	public function test204() {
 		$_POST = [];
 		
-		$post = new Post('TEST');
+		$post = new Post('test');
 		$result = $post->request();
 		
 		$this->assertTrue($result instanceof \handler\http\HttpStatus, '$result instanceof ' . get_class($result));

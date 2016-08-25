@@ -9,7 +9,7 @@ abstract class AbstractRestMethod implements IRestMethod {
 	public function attr($key, $value = null) {
 		// getter
 		if ($value === null) {
-			return isset($this->attributes['$key']) ? $this->attributes['$key'] : [];
+			return isset($this->attributes[$key]) ? $this->attributes[$key] : '';
 		}
 	
 		// setter

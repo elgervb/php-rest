@@ -20,7 +20,7 @@ class Get extends AbstractRestMethod {
 	 */
 	public function request(array $params = null) {
 		
-		if (isset($params) && is_array($params) && array_key_exists('id', $params)) {
+		if (is_array($params) && array_key_exists('id', $params)) {
 			return $this->findOne($params);
 		}
 		return $this->findAll();

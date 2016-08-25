@@ -14,11 +14,12 @@
   },
   "autoload" : {
 		"psr-0" : {
-			"rest" : "src/"
+			"rest" : "src/",
+			"test" : "tests/"
 		}
 	},
   "license" : [ "MIT" ],
-  "keywords" : [ "php", "view" ],
+  "keywords" : [ "php", "rest" ],
   "type" : "library",
   "support" : {
     "wiki" : "https://github.com/elgervb/php-http/wiki",

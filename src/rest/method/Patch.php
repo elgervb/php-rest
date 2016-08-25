@@ -5,54 +5,47 @@ use http\HttpContext;
 use handler\http\HttpStatus;
 use \RedBeanPHP\R;
 use handler\json\Json;
-use RedBeanPHP\RedException;
 
-class Put extends AbstractRestMethod {
+class Patch extends AbstractRestMethod {
 	
-	private $beanName;
+private $beanName;
 	
 	public function __construct($beanName) {
 		$this->beanName = $beanName;
 	}
 	
 	/**
-     * Updates a single model
+     * Updates part of a resource
      *
-     * @param array $params
-     *             
-     * @return HttpStatus 200 | 204 | 404 <br />
-     *         <b>200</b> when update was successfull with in the body the saved model <br />
-     *         <b>204</b> no content when no post data available <br />
-     *         <b>404</b> when ID was not found. <br />
-     *         <b>422</b> Unprocessable Entity on validation errors <br />
+     * @param $params the request parameters
+     *        
+     * @return HttpStatus 200 | 204 | 404 //
+     *         200 when update was successfull
+     *         204 no content when no post data available
+     *         404 when $aId was not found.
      */
 	public function request(array $params = null) {
-		
+			
 		$request = HttpContext::get()->getRequest();
 		
 		if(!$request->hasPost()) {
 			return new HttpStatus(HttpStatus::STATUS_204_NO_CONTENT);
 		}
 		
-		if (!is_array($params) || !array_key_exists('id', $params)) {
+		if (!isset($params['id'])) {
 			return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
 		}
 		
-		// check if resource with ID is available
-		if (!R::findOne($this->beanName, 'id = ?', [$params['id']])) {
+		$resource = R::findOne($this->beanName, 'id = ?', [$params['id']]);
+		if (!$resource) {
 			return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
 		}
-		
-		// Create a new resource
-		$resource = R::dispense($this->beanName);
 		
 		foreach ($_POST as $key => $value) {
 			if (strtolower($key) !== 'id') {
 				$resource->{$key} = $value;
 			}
 		}
-		
-		$resource->{'id'} = $params['id'];
 		
 		try {
 			$id = R::store($resource);
