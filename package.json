@@ -12,7 +12,7 @@
   "scripts": {
     "test": "gulp test",
     "test:coverage": "gulp test --coverage",
-    "watch": "gulp test:watch",
+    "watch": "npm test && gulp test:watch",
     "start": "php -S localhost:4000 -t src/ -c php.ini"
   },
   "repository": {
