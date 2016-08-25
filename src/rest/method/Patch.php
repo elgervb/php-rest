@@ -36,18 +36,18 @@ private $beanName;
 			return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
 		}
 		
-		$resource = R::findOne($this->beanName, 'id = ?', [$params['id']]);
-		if (!$resource) {
-			return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
-		}
-		
-		foreach ($_POST as $key => $value) {
-			if (strtolower($key) !== 'id') {
-				$resource->{$key} = $value;
-			}
-		}
-		
 		try {
+			$resource = R::findOne($this->beanName, 'id = ?', [$params['id']]);
+			if (!$resource) {
+				return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
+			}
+			
+			foreach ($_POST as $key => $value) {
+				if (strtolower($key) !== 'id') {
+					$resource->{$key} = $value;
+				}
+			}
+		
 			$id = R::store($resource);
 			return new HttpStatus(HttpStatus::STATUS_200_OK, new Json($resource));
 		} catch (RedException $ex) {

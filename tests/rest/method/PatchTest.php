@@ -11,7 +11,7 @@ use RedBeanPHP\R;
 class PatchTest extends \PHPUnit_Framework_TestCase {
 	
 	public static function setUpBeforeClass() {
-		R::addDatabase(__CLASS__, 'sqlite:'.__DIR__.'/PutTest.sqlite');
+		R::addDatabase(__CLASS__, 'sqlite:'.__DIR__.'/PatchTest.sqlite');
 	}
 	
 	public function setUp() {
@@ -67,7 +67,7 @@ class PatchTest extends \PHPUnit_Framework_TestCase {
 	 * @covers \rest\method\Patch::__construct
 	 * @covers \rest\method\Patch::request
 	 */
-	public function test200WithID() {
+	public function test200() {
 		$id = $this->createEntry(1);
 		
 		$_POST['name'] = 'name2';
@@ -94,4 +94,5 @@ class PatchTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNull($result->getExtraHeaders(), 'Extra headers should be null');
 		$this->assertnull($result->getContent(), 'Content should be null');
 	}
+	
 }

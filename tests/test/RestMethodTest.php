@@ -5,6 +5,12 @@ use \handler\http\HttpStatus;
 
 abstract class RestMethodTest extends \PHPUnit_Framework_TestCase {
 	
+	/**
+	 * Creates a new resource
+	 * @param unknown $resourceName
+	 * 
+	 * @return \RedBeanPHP\OODBBean
+	 */
 	protected function createResource($resourceName) {
 		$postBackup = $_POST;
 		$_post = [];
@@ -18,7 +24,7 @@ abstract class RestMethodTest extends \PHPUnit_Framework_TestCase {
 	
 		$_POST = $postBackup;
 	
-		return $result->getContent()->getObject()->id;
+		return $result->getContent()->getObject();
 	}
 	
 }
