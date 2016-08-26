@@ -9,12 +9,6 @@ use RedBeanPHP\RedException;
 
 class Put extends AbstractRestMethod {
 	
-	private $beanName;
-	
-	public function __construct($beanName) {
-		$this->beanName = $beanName;
-	}
-	
 	/**
      * Updates a single model
      *
@@ -39,12 +33,12 @@ class Put extends AbstractRestMethod {
 		}
 		
 		// check if resource with ID is available
-		if (!R::findOne($this->beanName, 'id = ?', [$params['id']])) {
+		if (!R::findOne($this->getResourceName(), 'id = ?', [$params['id']])) {
 			return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
 		}
 		
 		// Create a new resource
-		$resource = R::dispense($this->beanName);
+		$resource = R::dispense($this->getResourceName());
 		
 		foreach ($_POST as $key => $value) {
 			if (strtolower($key) !== 'id') {

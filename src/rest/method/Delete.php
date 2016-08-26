@@ -5,12 +5,6 @@ use handler\http\HttpStatus;
 
 class Delete extends AbstractRestMethod {
 	
-	private $beanName;
-	
-	public function __construct($beanName) {
-		$this->beanName = $beanName;
-	}
-	
 	/**
      * Delete a single resource
      *
@@ -26,7 +20,7 @@ class Delete extends AbstractRestMethod {
 			return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
 		}
 		
-		$resource = \RedBeanPHP\R::findOne($this->beanName, 'id = ?', [$params['id']]);
+		$resource = \RedBeanPHP\R::findOne($this->getResourceName(), 'id = ?', [$params['id']]);
 		if ($resource) {
 			\RedBeanPHP\R::trash($resource);
 			

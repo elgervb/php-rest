@@ -9,12 +9,6 @@ use RedBeanPHP\RedException;
 
 class Post extends AbstractRestMethod {
 	
-	private $beanName;
-	
-	public function __construct($beanName) {
-		$this->beanName = $beanName;
-	}
-	
 	/**
      * Create a new resource
      *
@@ -38,7 +32,7 @@ class Post extends AbstractRestMethod {
 			return new HttpStatus(HttpStatus::STATUS_422_UNPROCESSABLE_ENTITY);
 		}
 		
-		$resource = R::dispense(strtolower($this->beanName));
+		$resource = R::dispense(strtolower($this->getResourceName()));
 		foreach ($_POST as $key => $value) {
 			$resource->{$key} = $value;
 		}

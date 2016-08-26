@@ -8,12 +8,6 @@ use handler\json\Json;
 
 class Patch extends AbstractRestMethod {
 	
-private $beanName;
-	
-	public function __construct($beanName) {
-		$this->beanName = $beanName;
-	}
-	
 	/**
      * Updates part of a resource
      *
@@ -37,7 +31,7 @@ private $beanName;
 		}
 		
 		try {
-			$resource = R::findOne($this->beanName, 'id = ?', [$params['id']]);
+			$resource = R::findOne($this->getResourceName(), 'id = ?', [$params['id']]);
 			if (!$resource) {
 				return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
 			}

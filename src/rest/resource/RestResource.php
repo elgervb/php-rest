@@ -1,32 +1,18 @@
 <?php
 namespace rest\resource;
 
+use rest\factory\RestMethodFactory;
+use rest\method\IRestMethod;
+
 class RestResource implements IRestResource {
 	
-	private $beanName;
+	private $resourceName;
 	private $whitelist;
 	private $options;
 	
-	public function __construct($beanName, array $options = null) {
-		$this->beanName = $beanName;
-		// TODO
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 * @see \rest\resource\IRestResource::get()
-	 * 
-	 * @use \rest\method\Get::request
-	 */
-	public function get(array $params = null) {
-		$this->checkWhiteListed('GET');
-		
-		$get = new \rest\method\Get($this->beanName);
-		return $get->request($params);
-	}
-	
-	public function getBeanName() {
-		return $this->beanName;
+	public function __construct($resourceName, array $options = null) {
+		$this->resourceName = $resourceName;
+		$this->options = $options;
 	}
 	
 	/**
@@ -46,15 +32,75 @@ class RestResource implements IRestResource {
 	
 	/**
 	 * {@inheritDoc}
+	 * @see \rest\resource\IRestResource::delete()
+	 */
+	public function delete(array $params = null) {
+		return $this->exec(IRestMethod::METHOD_DELETE);
+	}
+	
+	/**
+	 * Executes a restMethod after cheching it's whitelisting
+	 * 
+	 * @param string $methodName
+	 * @param array $params
+	 * 
+	 * @return \handler\http\HttpStatus
+	 * 
+	 * @use RestMethodFactory::create
+	 */
+	private function exec($methodName, array $params = null) {
+		$this->checkWhiteListed($methodName);
+		
+		$method = RestMethodFactory::create($methodName, $this->resourceName);
+		return $method->request($params);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @see \rest\resource\IRestResource::get()
+	 * 
+	 * @use \rest\method\Get::request
+	 */
+	public function get(array $params = null) {
+		$this->exec(IRestMethod::METHOD_GET);
+	}
+	
+	/**
+	 * Returns the resource name
+	 * 
+	 * @return string the resource name
+	 */
+	public function getResourceName() {
+		return $this->resourceName;
+	}
+	
+	
+	/**
+	 * {@inheritDoc}
+	 * @see \rest\resource\IRestResource::head()
+	 */
+	public function head(array $params = null) {
+		return $this->exec(IRestMethod::METHOD_HEAD);
+	}
+	
+	
+	/**
+	 * {@inheritDoc}
 	 * @see \rest\resource\IRestResource::options()
 	 *
 	 * @use \rest\method\Options::request
 	 */
 	public function options(array $params = null) {
-		$this->checkWhiteListed('OPTIONS');
-		
-		$options = new \rest\method\Options();
-		return $options->request($params);
+		return $this->exec(IRestMethod::METHOD_OPTIONS);
+	}
+	
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * @see \rest\resource\IRestResource::patch()
+	 */
+	public function patch(array $params = null) {
+		return $this->exec(IRestMethod::METHOD_PATCH);
 	}
 	
 	/**
@@ -63,10 +109,7 @@ class RestResource implements IRestResource {
 	 * @use \rest\method\Post::request()
 	 */
 	public function post(array $params = null) {
-		$this->checkWhiteListed('POST');
-		
-		$post = new \rest\method\Post($this->beanName);
-		return $post->request($params);
+		return $this->exec(IRestMethod::METHOD_POST);
 	}
 	
 	/**
@@ -75,10 +118,7 @@ class RestResource implements IRestResource {
 	 * @use \rest\method\Put::request()
 	 */
 	public function put(array $params = null) {
-		$this->checkWhiteListed('POST');
-	
-		$put = new \rest\method\Put($this->beanName);
-		return $put->request($params);
+		return $this->exec(IRestMethod::METHOD_PUT);
 	}
 	
 	/**

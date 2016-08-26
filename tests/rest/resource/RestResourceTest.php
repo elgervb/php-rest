@@ -28,13 +28,13 @@ class RestResourceTest extends \PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers \rest\resource\RestResource::getBeanName
+	 * @covers \rest\resource\RestResource::getResourceName
 	 */
-	public function testGetBeanName() {
+	public function testGetResourceName() {
 		$name = 'TEST';
 		$resource = new RestResource($name);
 		
-		$this->assertEquals($name, $resource->getBeanName());
+		$this->assertEquals($name, $resource->getResourceName());
 	}
 	
 	/**

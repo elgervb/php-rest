@@ -18,7 +18,7 @@ class OptionsTest extends \PHPUnit_Framework_TestCase {
 	 * @covers \rest\method\Options::request
 	 */
 	public function test200() {
-		$options = new Options();
+		$options = new Options('test');
 		$result = $options->request();
 		
 		$this->assertTrue($result instanceof \handler\http\HttpStatus, '$result instanceof ' . get_class($result));

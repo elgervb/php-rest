@@ -21,7 +21,7 @@ class ResourceRoute {
 	 * @param Router $router
 	 */
 	private function routeGet(Router $router) {
-		$slug = strtolower($this->resource->getBeanName());
+		$slug = strtolower($this->resource->getResourceName());
 		$resource = $this->resource;
 		
 		$router->route('get', '/' . $slug, function() use ($resource) {

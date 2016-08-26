@@ -6,12 +6,6 @@ use RedBeanPHP\R;
 
 class Head extends AbstractRestMethod {
 	
-	private $beanName;
-	
-	public function __construct($beanName) {
-		$this->beanName = $beanName;
-	}
-	
 	/**
      * Head request
      *
@@ -26,7 +20,7 @@ class Head extends AbstractRestMethod {
 			return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
 		}
 		
-		$resource = R::findOne($this->beanName, 'id = ?', [$params['id']]);
+		$resource = R::findOne($this->getResourceName(), 'id = ?', [$params['id']]);
 		if ($resource) {
 			return new HttpStatus(HttpStatus::STATUS_200_OK);
 		}

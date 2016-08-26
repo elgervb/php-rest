@@ -8,7 +8,7 @@ class AbstractRestMethodtest extends \PHPUnit_Framework_TestCase {
 	private $obj;
 	
 	public function setUp() {
-		$this->obj = new MockRestMethod();
+		$this->obj = new MockRestMethod('test');
 	}
 	
 	public function tearDown() {

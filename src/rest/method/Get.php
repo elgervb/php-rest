@@ -3,12 +3,6 @@ namespace rest\method;
 
 class Get extends AbstractRestMethod {
 	
-	private $beanName;
-	
-	public function __construct($beanName) {
-		$this->beanName = $beanName;
-	}
-	
 	/**
 	 * Returns all resources or a single one when the $params contains an ID
 	 * 
@@ -34,7 +28,7 @@ class Get extends AbstractRestMethod {
 	 * @return \handler\http\HttpStatus
 	 */
 	private function findOne(array $params) {
-		$resource = \RedBeanPHP\R::findOne($this->beanName, 'id = ?', [$params['id']]);
+		$resource = \RedBeanPHP\R::findOne($this->getResourceName(), 'id = ?', [$params['id']]);
 		if ($resource) {
 			$json = new \handler\json\Json($resource);
 			return new \handler\http\HttpStatus(200, $json);
@@ -49,7 +43,7 @@ class Get extends AbstractRestMethod {
 	 * Finds all resources of this type
 	 */
 	 private function findAll() {
-		$resources = \RedBeanPHP\R::findAll($this->beanName);
+		$resources = \RedBeanPHP\R::findAll($this->getResourceName());
 		
 		$result = [];
 		

@@ -3,10 +3,6 @@ namespace rest\method;
 
 class Options extends AbstractRestMethod {
 	
-	public function __construct() {
-		//
-	}
-	
 	/**
 	 * Returns all resources
 	 *
