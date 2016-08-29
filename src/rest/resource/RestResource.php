@@ -62,7 +62,7 @@ class RestResource implements IRestResource {
 	 * @use \rest\method\Get::request
 	 */
 	public function get(array $params = null) {
-		$this->exec(IRestMethod::METHOD_GET);
+		return $this->exec(IRestMethod::METHOD_GET, $params);
 	}
 	
 	/**
