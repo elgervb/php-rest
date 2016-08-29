@@ -1,19 +1,26 @@
 <?php
 include __DIR__ . '/../vendor/autoload.php';
 
+use \RedBeanPHP\R;
+
 // all dates in UTC timezone
 date_default_timezone_set("UTC");
 
 // setup database
-\RedBeanPHP\R::setup('sqlite:./db.sqlite');
+R::addDatabase('test', 'sqlite:./db.sqlite');
+R::selectDatabase('test');
+
+// fill database with some default data
+// $labels = R::dispenseLabels('test', ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine','ten']);
+// R::storeAll($labels);
 
 $handlers = handler\Handlers::get();
 $handlers->add(new handler\http\HttpStatusHandler());
 $handlers->add(new handler\json\JsonHandler());
 
 $router = new router\Router();
-$resource = new \rest\resource\RestResource('TEST');
-$resource->whiteList('GET', 'OPTIONS', 'POST');
+$resource = new \rest\resource\RestResource('test');
+$resource->whiteList('DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT');
 $routes = new \rest\route\ResourceRoute($resource, $router);
 
 $result = $router->match($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
