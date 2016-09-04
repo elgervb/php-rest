@@ -14,11 +14,11 @@ R::selectDatabase('test');
 // $labels = R::dispenseLabels('test', ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine','ten']);
 // R::storeAll($labels);
 
-$handlers = handler\Handlers::get();
-$handlers->add(new handler\http\HttpStatusHandler());
-$handlers->add(new handler\json\JsonHandler());
+$handlers = \handler\Handlers::get();
+$handlers->add(new \handler\http\HttpStatusHandler());
+$handlers->add(new \handler\json\JsonHandler());
 
-$router = new router\Router();
+$router = new \router\Router();
 $resource = new \rest\resource\RestResource('test');
 $resource->whiteList('DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT');
 $routes = new \rest\route\ResourceRoute($resource, $router);
