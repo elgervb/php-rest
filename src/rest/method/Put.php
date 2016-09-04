@@ -29,7 +29,7 @@ class Put extends AbstractRestMethod {
 		}
 		
 		if (!is_array($params) || !array_key_exists('id', $params)) {
-			return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND);
+			return new HttpStatus(HttpStatus::STATUS_404_NOT_FOUND, "ID not given as param");
 		}
 		
 		// check if resource with ID is available
