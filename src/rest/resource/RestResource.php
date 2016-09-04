@@ -35,7 +35,7 @@ class RestResource implements IRestResource {
 	 * @see \rest\resource\IRestResource::delete()
 	 */
 	public function delete(array $params = null) {
-		return $this->exec(IRestMethod::METHOD_DELETE);
+		return $this->exec(IRestMethod::METHOD_DELETE, $params);
 	}
 	
 	/**
@@ -80,7 +80,7 @@ class RestResource implements IRestResource {
 	 * @see \rest\resource\IRestResource::head()
 	 */
 	public function head(array $params = null) {
-		return $this->exec(IRestMethod::METHOD_HEAD);
+		return $this->exec(IRestMethod::METHOD_HEAD, $params);
 	}
 	
 	
@@ -91,7 +91,7 @@ class RestResource implements IRestResource {
 	 * @use \rest\method\Options::request
 	 */
 	public function options(array $params = null) {
-		return $this->exec(IRestMethod::METHOD_OPTIONS);
+		return $this->exec(IRestMethod::METHOD_OPTIONS, $params);
 	}
 	
 	/**
@@ -100,7 +100,7 @@ class RestResource implements IRestResource {
 	 * @see \rest\resource\IRestResource::patch()
 	 */
 	public function patch(array $params = null) {
-		return $this->exec(IRestMethod::METHOD_PATCH);
+		return $this->exec(IRestMethod::METHOD_PATCH, $params);
 	}
 	
 	/**
@@ -109,7 +109,7 @@ class RestResource implements IRestResource {
 	 * @use \rest\method\Post::request()
 	 */
 	public function post(array $params = null) {
-		return $this->exec(IRestMethod::METHOD_POST);
+		return $this->exec(IRestMethod::METHOD_POST, $params);
 	}
 	
 	/**
@@ -118,7 +118,7 @@ class RestResource implements IRestResource {
 	 * @use \rest\method\Put::request()
 	 */
 	public function put(array $params = null) {
-		return $this->exec(IRestMethod::METHOD_PUT);
+		return $this->exec(IRestMethod::METHOD_PUT, $params);
 	}
 	
 	/**
