@@ -13,8 +13,10 @@ abstract class IntegrationTest extends RestMethodTest {
 			unlink($dbFile);
 		}
 		
-		R::addDatabase('integration', "sqlite:$dbFile");
-		R::selectDatabase('integration');
+		$random = rand(1000, PHP_INT_MAX);
+		
+		R::addDatabase('integration'.$random, "sqlite:$dbFile");
+		R::selectDatabase('integration'.$random);
 		
 		$handlers = \handler\Handlers::get();
 		$handlers->add(new \handler\http\HttpStatusHandler());
