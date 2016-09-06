@@ -10,7 +10,7 @@ class Get extends AbstractRestMethod {
 	 *
 	 * @return HttpStatus 200 | 204
 	 *         200 with JSON of the models found
-	 *         204 no content when there are no models in the database
+	 *         404 no content when there are no models in the database
 	 */
 	public function request(array $params = null) {
 		

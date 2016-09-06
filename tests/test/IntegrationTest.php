@@ -30,6 +30,7 @@ abstract class IntegrationTest extends RestMethodTest {
 	
 	protected function tearDown() {
 		$this->clearPost();
+		R::nuke();
 	}
 	
 	/**

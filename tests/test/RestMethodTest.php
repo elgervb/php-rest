@@ -7,7 +7,7 @@ abstract class RestMethodTest extends \PHPUnit_Framework_TestCase {
 	
 	/**
 	 * Creates a new resource
-	 * @param unknown $resourceName
+	 * @param string $resourceName
 	 * 
 	 * @return \RedBeanPHP\OODBBean
 	 */
