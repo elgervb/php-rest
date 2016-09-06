@@ -65,7 +65,9 @@ abstract class IntegrationTest extends RestMethodTest {
 			$this->assertTrue($handler instanceof \handler\http\HttpStatusHandler, "Handler found was of type " . get_class($handler));
 		}
 	    $handler->handle($result);
-	    return $result->getContent()->getObject();
+	    
+	    $content = $result->getContent();
+	    return $content ? $content->getObject() : $content;
 	}
 	
 	protected function mockPost($key, $value) {
