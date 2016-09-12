@@ -46,9 +46,13 @@ abstract class IntegrationTest extends RestMethodTest {
 		/* @var $result \handler\http\HttpStatus */
 		$result = $this->router->match($route, $requestMethod);
 		
+		if ($result === false) {
+			$this->fail('No route found for ' . $route);
+		}
+		
 		if ($assertNotNull) {
 			$this->assertNotNull($result, "No result from route $route $requestMethod");
-			$this->assertTrue($result instanceof \handler\http\HttpStatus, "Route result found was of type " . get_class($result));
+			$this->assertTrue($result instanceof \handler\http\HttpStatus);
 		}
 
 		$this->assertEquals($assertStatusCode, $result->getHttpCode(), 'Http status code not correct');

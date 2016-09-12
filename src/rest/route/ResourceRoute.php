@@ -33,7 +33,7 @@ class ResourceRoute {
 		$resource = $this->resource;
 	
 		$router->route('delete', '/' . $slug.'/([0-9]+)', function($id) use ($resource) {
-			return $resource->post();
+			return $resource->delete(['id'=>$id]);
 		}, HttpMethod::METHOD_DELETE); 
 	}
 	
@@ -58,7 +58,7 @@ class ResourceRoute {
 		$slug = $this->getResourceSlug();
 		$resource = $this->resource;
 	
-		$router->route('head', "/$slug/([0-9]+)", function($id) use ($resource) {
+		$router->route('head', "/$slug/?([0-9]+)?", function($id = null) use ($resource) {
 			return $resource->head(['id'=>$id]);
 		}, HttpMethod::METHOD_HEAD);
 	}
@@ -71,7 +71,7 @@ class ResourceRoute {
 		$slug = $this->getResourceSlug();
 		$resource = $this->resource;
 		
-		$router->route('options', '/' . $slug, function() use ($resource) {
+		$router->route('options', "^/$slug.*", function() use ($resource) {
 			return $resource->options();
 		}, HttpMethod::METHOD_OPTIONS);
 	}
@@ -81,7 +81,7 @@ class ResourceRoute {
 		$resource = $this->resource;
 	
 		$router->route('patch', '/' . $slug.'/([0-9]+)', function($id) use ($resource) {
-			return $resource->patch();
+			return $resource->patch(['id'=>$id]);
 		}, HttpMethod::METHOD_PATCH);
 	}
 	
