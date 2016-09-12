@@ -49,3 +49,5 @@ composer.lock
 composer.phar
 /tests/**/*.sqlite
 /tmp/
+
+example/db.sqlite
