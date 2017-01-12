@@ -3,7 +3,6 @@ namespace rest\route;
 
 use \rest\resource\RestResource;
 use router\Router;
-use http\HttpRequest;
 use http\HttpMethod;
 
 class ResourceRoute {
