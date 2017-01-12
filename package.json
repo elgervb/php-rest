@@ -13,7 +13,8 @@
     "test": "gulp test",
     "test:coverage": "gulp test --coverage",
     "watch": "npm test && gulp test:watch",
-    "start": "php -S localhost:4000 -t src/ -c php.ini"
+    "start": "php -S localh",
+    "postinstall": "composer install --no-interaction --prefer-source"
   },
   "repository": {
     "type": "git",
