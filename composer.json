@@ -5,7 +5,7 @@
   "minimum-stability": "dev",
   "require" : {
     "gabordemooij/redbean" : "=v4.3.2",
-    "elgervb/php-router" : "=0.0.2",
+    "elgervb/php-router" : "dev-master",
     "elgervb/php-view" : "dev-master",
     "elgervb/php-http" : "dev-master",
     "elgervb/php-handler" : "dev-master"
