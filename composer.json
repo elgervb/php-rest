@@ -2,6 +2,7 @@
   "name" : "elgervb/php-rest",
   "description" : "php-http",
   "version" : "0.0.1",
+  "minimum-stability": "dev",
   "require" : {
     "gabordemooij/redbean" : "=v4.3.2",
     "elgervb/php-router" : "=0.0.2",
