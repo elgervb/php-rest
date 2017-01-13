@@ -1,9 +1,9 @@
 <?php
 namespace rest\route;
 
-use \rest\resource\RestResource;
 use router\Router;
 use http\HttpMethod;
+use rest\resource\IRestResource;
 
 class ResourceRoute {
 	
@@ -12,8 +12,23 @@ class ResourceRoute {
 	 */
 	private $resource;
 	
-	public function __construct(RestResource $resource, Router $router) {
+	private $routePrefix = '';
+	
+	/**
+	 * Create a new ResourceRoute
+	 * 
+	 * @param RestResource $resource
+	 * @param Router $router
+	 * @param string $routePrefix the prefix path for the route eg: /prefix/slug/id
+	 */
+	public function __construct(IRestResource $resource, Router $router, $routePrefix = '') {
 		$this->resource = $resource;
+		// prefix should always begin with a / or be empty
+		if ($routePrefix) {
+			$this->routePrefix = $routePrefix && strstr($routePrefix, '/') === $routePrefix ? $routePrefix : '/' . $routePrefix;
+		}
+		
+	
 		$this->routeDelete($router);
 		$this->routeGet($router);
 		$this->routeHead($router);
@@ -23,6 +38,11 @@ class ResourceRoute {
 		$this->routePut($router);
 	}
 	
+	/**
+	 * Returns the resource slug
+	 * 
+	 * @return string
+	 */
 	private function getResourceSlug() {
 		return strtolower($this->resource->getResourceName());
 	}
@@ -31,9 +51,9 @@ class ResourceRoute {
 		$slug = $this->getResourceSlug();
 		$resource = $this->resource;
 	
-		$router->route('/' . $slug.'/([0-9]+)', function($id) use ($resource) {
+		$router->route($this->routePrefix . '/' . $slug.'/([0-9]+)', function($id) use ($resource) {
 			return $resource->delete(['id'=>$id]);
-		}, HttpMethod::METHOD_DELETE); 
+		}, HttpMethod::METHOD_DELETE);
 	}
 	
 	/**
@@ -44,11 +64,11 @@ class ResourceRoute {
 		$slug = $this->getResourceSlug();
 		$resource = $this->resource;
 		
-		$router->route("^/$slug$", function() use ($resource) {
+		$router->route('^' . $this->routePrefix . '/' . $slug . '$', function() use ($resource) {
 			return $resource->get();
 		}, HttpMethod::METHOD_GET);
 	
-		$router->route("^/$slug/([0-9]+)$", function($id) use ($resource) {
+		$router->route('^' . $this->routePrefix . '/' . $slug . '/([0-9]+)$', function($id) use ($resource) {
 			return $resource->get(['id'=>$id]);
 		}, HttpMethod::METHOD_GET);
 	}

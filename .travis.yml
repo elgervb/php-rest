@@ -1,5 +1,8 @@
 language: php
 php:
+  - 5.3
+  - 5.4
+  - 5.5
   - 5.6
   - 7.0
   - hhvm
@@ -14,10 +17,8 @@ sudo: false
 
 before_install:
   - composer self-update
-  - npm install
 
 install:
-  - npm install
   - travis_retry composer install --no-interaction --prefer-source
   
-script: npm run test:coverage
+script: phpunit tests --configuration phpunit.xml --coverage-text
