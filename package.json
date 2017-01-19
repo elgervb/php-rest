@@ -10,7 +10,7 @@
       
   },
   "scripts": {
-    "test": "gulp test",
+    "test": "./vendor/phpunit/phpunit/phpunit -c ./phpunit.xml",
     "test:coverage": "gulp test --coverage",
     "watch": "npm test && gulp test:watch",
     "start": "php -S localhost:4000 -t example/ -c php.ini"
