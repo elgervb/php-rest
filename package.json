@@ -13,7 +13,8 @@
     "test": "./vendor/phpunit/phpunit/phpunit -c ./phpunit.xml",
     "test:coverage": "gulp test --coverage",
     "watch": "npm test && gulp test:watch",
-    "start": "php -S localhost:4000 -t example/ -c php.ini"
+    "start": "php -S localhost:4000 -t example/ -c php.ini",
+    "postinstall": "composer install --no-interaction --prefer-source"
   },
   "repository": {
     "type": "git",
