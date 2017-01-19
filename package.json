@@ -27,7 +27,6 @@
   "homepage": "https://github.com/elgervb/php-rest",
   "devDependencies": {
     "gulp": "3.9.0",
-    "gulp-connect-php": "0.0.8",
     "gulp-if": "2.0.0",
     "gulp-notify": "2.2.0",
     "gulp-phpunit": "0.16.0",
